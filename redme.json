@@ -1,0 +1,40 @@
+// Learn-python
+
+true - // сделанно
+false - // не сделанно
+
+lesson-1 {
+	"info": true,
+	"program": false,
+	"test": false
+}
+lesson-2 {
+	"info": true,
+	"program": false,
+	"test": false
+}
+lesson-3 {
+	"info": true,
+	"program": false,
+	"test": false
+}
+lesson-4 {
+	"info": true,
+	"program": false,
+	"test": false
+}
+lesson-5 {
+	"info": true,
+	"program": false,
+	"test": false
+}
+lesson-6 {
+	"info": true,
+	"program": false,
+	"test": false
+}
+lesson-7 {
+	"info": true,
+	"program": false,
+	"test": false
+}
