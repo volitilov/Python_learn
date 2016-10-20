@@ -1,3 +1,19 @@
-import program
+# 	/////////////////////////////////////////
+	# import program
 
-print(program.ex)
+	# print(program.test0)
+
+#	////////////////////////////////////////
+ 	# from program import test0, test1
+
+ 	# print(test0)
+
+#	////////////////////////////////////////
+	# from program import *
+
+	# print(test0)
+
+#	///////////////////////////////////////
+	import program.test0
+
+	print(test0)
