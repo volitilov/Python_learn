@@ -33,26 +33,30 @@
 
 #	Для обработки исключений используется конструкция try - except.
 
-	>>> try:
+	try:
 
 		k = 1 / 0
-		except ZeroDivisionError:
+
+	except ZeroDivisionError:
+
 		k = 0
 
-	>>> print(k)	# 0
+	print(k)	# 0
 
 #	В блоке try мы выполняем инструкцию, которая может породить исключение, 
 #	а в блоке except мы перехватываем их. При этом перехватываются как 
 #	само исключение, так и его потомки. Например, перехватывая ArithmeticError,
 #	мы также перехватываем FloatingPointError, OverflowError и ZeroDivisionError.
 
-	>>> try:
+	try:
 
 		k = 1 / 0
-		except ArithmeticError:
+
+	except ArithmeticError:
+
 		k = 0
 
-	>>> print(k)	# 0
+	print(k)	# 0
 
 #	Также возможна инструкция except без аргументов, которая перехватывает 
 #	вообще всё (и прерывание с клавиатуры, и системный выход и т. д.). 
@@ -67,20 +71,24 @@
 #	закрыть файл). Инструкция else выполняется в том случае, если 
 #	исключения не было.
 	
-	>>> f = open('1.txt')
-	>>> ints = []
+	f = open('1.txt')
 
-	>>> try:
+	ints = []
+
+	try:
 
 		for line in f:
         	ints.append(int(line))
-		except ValueError:
-			print('Это не число. Выходим.')
-		except Exception:
-			print('Это что ещё такое?')
+
+	except ValueError:
+		print('Это не число. Выходим.')
+
+	except Exception:
+		print('Это что ещё такое?')
 		
 		else:
 			print('Всё хорошо.')
+			
 		finally:
 			f.close()
 			print('Я закрыл файл.')

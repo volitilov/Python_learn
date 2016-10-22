@@ -9,11 +9,14 @@
  	# print(test0)
 
 #	////////////////////////////////////////
-	# from program import *
+from program import *
 
 	# print(test0)
 
 #	///////////////////////////////////////
-	import program.test0
+	# import program.test0
 
-	print(test0)
+	# print(test0)
+
+
+print(workLines())
