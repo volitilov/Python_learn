@@ -1,20 +1,16 @@
 #	/////////////////////////////////////////////////////////
 #	Here, the practice on the topic "string" ////////////////
 
-	import random
+#	Task:
 
-	test0 = random.randrange(1, 3)
-	test1 = 'jhdjf'
-	test2 = 2
-	test3 = len(test1)
+#	Зделать программу которая будет подставлять в строку 
+#	значение выбранного элемента списка
 
-	ex = "test: {test[0]}".format(test = [test0, test1, test2, test3])
-	ex2 = '{2},{0},{1}'.format('a', 'b', 'c')
 
-	ex3 = '{:>30}'.format('right align')
-	ex4 = '{:^30}'.format('center')
+name = "zaza"
 
-	points = 19.5
-	total = 22
+def workLines():
 
-	ex5 = 'test: {:.2%}'.format(points/total)
+	ex = "hellow {testList[0]}".format(testList = [name, "jhrjh", 987])
+
+	return ex.capitalize()
