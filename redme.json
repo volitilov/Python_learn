@@ -21,8 +21,8 @@ lesson-1 {
 lesson-2 {
 	"theme": "list",		// списки
 	"info": true,
-	"program": false,
-	"test": false
+	"program": true,
+	"test": true
 }
 lesson-3 {
 	"theme": "slices",		// индексы и срезы
