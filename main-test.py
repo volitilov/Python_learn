@@ -1,6 +1,6 @@
 #	/////////////////////////////////////////////////////
 #	it is tested main-program (main-program.py) /////////
 	
-	import main-program
+	from main-program import *
 
 	
