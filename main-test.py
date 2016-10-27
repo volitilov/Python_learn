@@ -1,6 +1,0 @@
-#	/////////////////////////////////////////////////////
-#	it is tested main-program (main-program.py) /////////
-	
-	from main-program import *
-
-	

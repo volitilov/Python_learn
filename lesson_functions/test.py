@@ -12,9 +12,11 @@ user2 = {
 
 users = [user1, user2]
 
-newUser = {
-	'login': 'test',
-	'password': '999'
+testUser = {
+	'login': 'volitilov',
+	'password': 'swer6709'
 }
 
-print(authorization(users, newUser))
+authorization(users, testUser)
+
+print(users)
