@@ -3,12 +3,10 @@
 
 import importlib.machinery 
 
-modulename = importlib.machinery.SourceFileLoader('modulename','/Path/To/module.py')
+modulename = importlib.machinery.SourceFileLoader('functions','lesson_functions/test.py').load_module()
 
 #	import main_program for test ..........................
 
 # from main_program import *
 
 # 	import dictionaries ...................................
-
-load_module('lesson_dictionaries/test.py')
