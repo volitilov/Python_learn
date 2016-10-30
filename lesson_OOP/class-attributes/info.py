@@ -22,12 +22,11 @@
 #	Здесь Simple.var и Simple.f — пользовательские атрибуты. Есть 
 #	также стандартные атрибуты:
 
-	print Simple.__doc__
+	print Simple.__doc__ 	# Простой класс
 
 #	Целое число
 	
-	print Simple.var.__doc__
-	int(x[, base]) -> integer
+	print Simple.var.__doc__ 	# int(x[, base]) -> integer
 
 #	Создание экземпляра класса похоже на то, как будто мы делаем вызов 
 #	функций:
