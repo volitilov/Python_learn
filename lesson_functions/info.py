@@ -238,7 +238,7 @@
 
 #	функция принимает два числа, а возвращает одно
 	def rectangle_area_finder( ):
-    	(num, num) -> num    
+    	'''(num, num) -> num'''
  
     rectangle_area_finder(3, 5)	# 15
     rectangle_area_finder(17.2, 6)	# 103.2
@@ -249,7 +249,7 @@
 #	имена a и b
 
 	def rectangle_area_finder(a, b):
-    	(num, num) -> num
+    	'''(num, num) -> num'''
      
     rectangle_area_finder(3, 5)	# 15
     rectangle_area_finder(17.2, 6)	# 103.2
@@ -257,7 +257,7 @@
 #	Написать краткое, но содержательное описание функции
 
 	def rectangle_area_finder(a, b):
-    	(num, num) -> num
+    	'''(num, num) -> num'''
  
     # Returns an area of a rectangle with given sides a and b.    
  
@@ -267,7 +267,7 @@
 #	Написать собственно тело функции
 
 	def rectangle_area_finder(a, b):
-    	(num, num) -> num
+    	'''(num, num) -> num'''
  
     # Returns an area of a rectangle with given sides a and b.    
  
