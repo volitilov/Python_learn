@@ -1,5 +1,5 @@
 #	/////////////////////////////////////////////////////////
-#	Here, the practice on the topic "class-attributes" ......
+#	Here, the practice on the topic "constructors" ..........
 
 #	Task:
 
