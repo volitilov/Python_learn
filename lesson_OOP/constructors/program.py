@@ -11,11 +11,10 @@ class BrauserDownloads:
 		self.chrome = c
 		self.opera = o
 		self.b = brausers
-		self.record(f, c, o, brausers)
+		self.record()
 
-	def record(self, firefox, chrome, opera, b):
-		b['firefox']['download'] = b['firefox']['download'] + self.firefox
-		b['chrome']['download'] = b['chrome']['download'] + self.chrome
-		b['opera']['download'] = b['opera']['download'] + self.opera
-
+	def record(self):
+		self.b['firefox']['download'] = self.b['firefox']['download'] + self.firefox
+		self.b['chrome']['download'] = self.b['chrome']['download'] + self.chrome
+		self.b['opera']['download'] = self.b['opera']['download'] + self.opera
 
