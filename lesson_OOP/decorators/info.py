@@ -24,6 +24,7 @@
 			print("Я - код, который отработает до вызова функции")
 			function_to_decorate() # Сама функция
 			print("А я - код, срабатывающий после")
+		
 		# Вернём эту функцию
 		return the_wrapper_around_the_original_function
 
@@ -74,6 +75,7 @@
 			print()
 			func()
 			print("<\______/>")
+
 		return wrapper
 
 	def ingredients(func):
@@ -81,6 +83,7 @@
 			print("#помидоры#")
 			func()
 			print("~салат~")
+
 		return wrapper
 
 	def sandwich(food="--ветчина--"):
@@ -98,7 +101,7 @@
 	@bread
 	@ingredients
 	def sandwich(food="--ветчина--"):
-	print(food)
+		print(food)
 
 	sandwich() 	#помидоры#
 				# --ветчина--
@@ -171,6 +174,7 @@
 #	можно воспользоваться распаковкой аргументов:
 
 	def a_decorator_passing_arbitrary_arguments(function_to_decorate):
+		
 		# Данная "обёртка" принимает любые аргументы
 		def a_wrapper_accepting_arbitrary_arguments(*args, **kwargs):
 			print("Передали ли мне что-нибудь?:")
@@ -183,9 +187,8 @@
 	def function_with_no_argument():
 		print("Python is cool, no argument here.")
 
-	function_with_no_argument() #	Передали ли мне что-нибудь?: (), {}
-
-	Python is cool, no argument here.
+	function_with_no_argument() # Передали ли мне что-нибудь?: (), {}
+								# Python is cool, no argument here.
 
 	@a_decorator_passing_arbitrary_arguments
 	def function_with_arguments(a, b, c):
