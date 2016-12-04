@@ -21,6 +21,7 @@ list(open('test.py'))
 ]
 
 [x + y for x in 'abc' for y in 'def']
+list(x + y for x in 'abc' for y in 'def')
 
 #	генератор множеств ...........................................
 
@@ -30,6 +31,9 @@ set(open('test.py'))
 		 for line in open('test.py') if line[0] == 'p'
 }
 
+{x * x for x in range(10)}
+set(x * x for x in range(10))
+
 #	генератор словарей ...........................................
 
 dict(open('test.py'))
@@ -37,3 +41,6 @@ dict(open('test.py'))
 {	ix: line for ix in enumerate(open('test.py'))
 			 for ix in enumerate(open('test.py')) if line[0] == 'p'
 }
+
+{x: x * x for x in range(10)}
+dict((x, x * x) for x in range(10))

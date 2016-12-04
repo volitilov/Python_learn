@@ -38,3 +38,12 @@ from tkinter import Button, mainloop
 x = Button(text ='Press me', command=(lambda:sys.stdout.write('Spam\n')))
 x.pack()
 mainloop()
+
+#	ex4 ................................................
+
+def timesfour(S):
+	for i in S:
+		yield i * 4
+
+G = timesfour('spam')
+print(list(G))		# ['ssss', 'pppp', 'aaaa', 'mmmm']
