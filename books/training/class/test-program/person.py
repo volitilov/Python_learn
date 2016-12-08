@@ -6,4 +6,7 @@ class Person:
 
 	def giveRaise(this, percent):
 		this.pay = int(this.pay * (1 + percent))
-	
+
+	def __str__(this):
+		return '[Person: {}, {}, {}]'.format(this.name, this.job, this.pay)
+
