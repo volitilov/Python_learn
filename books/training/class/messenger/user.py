@@ -1,15 +1,15 @@
 import shelve
+data_b = 'users-db'
 
 class User:
 	def __init__(self, username, password):
 		self.username = username
 		self.password = password
 		self.friends = []
-		self.addFr = False
-		self.sendMess = False
+		self.log_in = False
 
 	def registration(self): 
-		db = shelve.open('users-db')
+		db = shelve.open(data_b)
 
 		for key in sorted(db):
 			if (db[key].username, db[key].password) == (self.username, self.password):
@@ -20,53 +20,53 @@ class User:
 		db.close()
 
 	def login(self):
-		reg = False
-
-		db = shelve.open('users-db',  writeback=True)
+		db = shelve.open(data_b,  writeback=True)
 		
 		for key in sorted(db):
 			# reg = False if (db[key].username, db[key].password) != (self.username, self.password) else True
-			if (db[key].username, db[key].password) != (self.username, self.password):
-				reg = False
-			else:
-				reg = True
+			if (db[key].username, db[key].password) == (self.username, self.password):
+				db[key].log_in = True
 				break
+			else:
+				db[key].log_in = False
 
-		if reg == True:
-			db[key].addFr = True
-			db[key].sendMess = True	
-		else:
+		if db[key].log_in == False:
 			raise Exception('{} регестрируйся.'.format(self.username))
 
 		db.close()
-		# print(reg)
 
 	def addFriend(self, name):
 		ad_fr = False
-		fr_name = False
+		ad_fr2 = False
 
-		db = shelve.open('users-db',  writeback=True)
+		db = shelve.open(data_b,  writeback=True)
 
-		for key in sorted(db):
-			if db[key].username == name:	# неверно 
-				raise Exception('Вы с {} уже друзья.'.format(name))
-			elif db[key].addFr != True:
-				raise Exception('{} авторизуйся.'.format(self.username))
+		for i in sorted(db):
+			if name == db[i].username:
+				ad_fr = True
+				break
 			else:
-				fr_name = False
-
-			if (db[key].username, db[key].password) != (self.username, self.password):
 				ad_fr = False
-			else:
-				if db[key].addFr == True:
-					ad_fr = True
-					break
+		
+		for key in sorted(db):
+			if (db[key].username, db[key].password) == (self.username, self.password):
+				if db[key].log_in == True:
+					fr = name in db[key].friends
+					if fr == True: 
+						raise Exception('Вы с {} уже друзья.'.format(name))
+					else:
+						if ad_fr == True:
+							db[key].friends.append(name)
+							ad_fr2 = True
+							break
+				else:	
+					raise Exception('{} авторизуйся.'.format(self.username))
 
 		if ad_fr == False:
-			raise Exception('{} регестрируйся.'.format(self.username))
+			raise Exception('Пользователь {}, не зарегестрирован.'.format(name))
 
-		if fr_name == False and ad_fr == True:
-			db[key].friends.append(name)
+		if ad_fr2 == False:
+			raise Exception('{}: не зарегестрирован.'.format(name))
 
 		db.close()
 
@@ -78,22 +78,3 @@ class User:
 
 	def __str__(self):
 		return '[{} => {}]'.format(self.__class__.__name__, self.gatherAttrs())
-
-
-# user = new User('lalka', 'azaza')
-
-# user.registration()
-
-# user.login()
-
-# user.addFriend('vasya')
-
-# user.sendMessage('vasya', 'hello')
-
-# user.log('vasya')
-
-# [ { from: 'lalka', to: 'vasya', text: 'hello' } ]
-
-
-# def sendMessage(self, to, text):
-# 	msg = new Message(self.username, to, text)

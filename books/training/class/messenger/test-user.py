@@ -1,13 +1,12 @@
-#	test registration ::::::::::::::::::::::::::::::::::::::
-
+#	create 	users ::::::::::::::::::::::::::::::::::::::::::
 from user import User
 
 bob = User('Bob', '123')
 i01 = User('i01', 'faint')
 sam = User('Sam', 'qwe')
-ban = User('Ban', '8787')
+# ban = User('Ban', '8787')
 
-# print(bob.username, bob.password, bob.friends)
+#	test registration ::::::::::::::::::::::::::::::::::::::
 
 # bob.registration()
 # i01.registration()
@@ -23,8 +22,10 @@ ban = User('Ban', '8787')
 
 #	test addFriends ::::::::::::::::::::::::::::::::::::::::
 
+# bob.addFriend('Bob')
 # i01.addFriend('Bob')
-sam.addFriend('Bob')
+# sam.addFriend('Bob')
+# ban.addFriend('Bob')
 
 #	test users-db ::::::::::::::::::::::::::::::::::::::::::
 
@@ -57,7 +58,7 @@ for key in d:
 
 # print(d['Bob'].username, d['Bob'].password, d['Bob'].friends)
 
-# del d['3'], d['4']
+# del d['2']
 # d.clear()
 
 # d['1'] = d['2']
