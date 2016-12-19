@@ -16,7 +16,7 @@ def listing(module, verbose=True):
 	count = 0
 
 	for attr in module.__dict__:	# Сканировать пространство имен
-		print('%02d) %s' % (count, attr), end=' ')
+		print('{}) {}'.format(count, attr), end=' ')
 		
 		if attr.startswith('__'):
 			print('<built-in name>')	# Пропустить __file__ и др.
@@ -27,7 +27,7 @@ def listing(module, verbose=True):
 
 	if verbose:
 		print(sepline)
-		print(module.__name__, 'has %d names' % count)
+		print(module.__name__, 'has {} names'.format(count))
 		print(sepline)
 
 	if __name__ == '__main__':
