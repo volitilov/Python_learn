@@ -1,8 +1,7 @@
 #	Person ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+from lister import ListTree
 
-from classtools import AttrDisplay
-
-class Person(AttrDisplay):
+class Person(ListTree):
 	'''
 	Создает и обрабатывает записи с информацией о людях
 	'''
@@ -13,3 +12,7 @@ class Person(AttrDisplay):
 
 	def giveRaise(this, percent):
 		this.pay = int(this.pay * (1 + percent))
+
+if __name__ == '__main__':
+	X = Person()
+	print(X)
