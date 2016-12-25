@@ -42,17 +42,86 @@ class Ex3(Ex2):
 	def test(self, other):
 		self.data *= other
 
-a = Ex3('abc')
-a.y() 	# New value: abc
-print(a) # [Ex3: abc]
+# a = Ex3('abc')
+# a.y() 	# New value: abc
+# print(a) # [Ex3: abc]
 
-b = '-ghy-'
-c = a + b	# Новый __add__: создается новый экземпляр
-c.y() 	# New value: abc-ghy-
-print(c) # [Ex3: abc-ghy-]
+# b = '-ghy-'
+# c = a + b	# Новый __add__: создается новый экземпляр
+# c.y() 	# New value: abc-ghy-
+# print(c) # [Ex3: abc-ghy-]
 
-a.test(2)
-print(a) # [Ex3: abcabc]
-c.test(3)
-print(c) # [Ex3: abc-ghy-abc-ghy-abc-ghy-]
+# a.test(2)
+# print(a) # [Ex3: abcabc]
+# c.test(3)
+# print(c) # [Ex3: abc-ghy-abc-ghy-abc-ghy-]
+
+#	ex4 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+class Ex4:
+	# self.var = 'kdsj'
+	atr = 'test'
+	def __init__(self, value):
+		self.atr = value
+	def display(self):
+		print(self.atr, Ex4.atr)
+
+# x = Ex4(1)
+# y = Ex4(2)
+
+# x.display()	# 1 test
+# y.display()	# 2 test
+
+# print(Ex4.var)	# NameError: name 'self' is not defined
+
+
+#	ex5 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+class Ex5_1:
+	def display():
+		print('center')
+
+class Ex5_2(Ex5_1):
+	def display():
+		print('start')
+		Ex5_1.display()
+		print('stop')
+
+# Ex5_2.display() # start
+# 				# center
+# 				# stop
+
+#	ex6 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+class Super:
+	def method(self):
+		print('in Super.method')
+	def delegate(self):
+		self.action()
+
+class Inheriton(Super): pass
+
+class Replacer(Super):
+	def method(self):
+		print('in Replacer.method')
+
+class Extender(Super):
+	def method(self):
+		print('starting Extender.method')
+		Super.method(self)
+		print('ending Extender.method')
+
+class Provider(Super):
+	def action(self):
+		print('in Provider.action')
+
+if __name__ == '__main__':
+	for klass in (Inheriton, Replacer, Extender):
+		print('\n' + klass.__name__ + '...')
+		klass().method()
+	print('\nProvider...')
+	x = Provider()
+	x.delegate()
+
+#	ex7 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
