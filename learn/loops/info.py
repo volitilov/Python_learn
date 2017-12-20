@@ -1,9 +1,10 @@
 #	while ::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-# while True:
-# 	reply = input('Hellow, your name? ')
-# 	if reply == 'stop': break
-# 	print('Good name:', reply.upper())
+while True:
+	reply = input('Hellow, your name? ')
+	if reply == 'stop': break
+	print('Good name:', reply.upper())
+	if reply == 'next': continue
 
 #	for ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

@@ -98,3 +98,20 @@
 	G = timesfour('spam')
 	list(G)
 
+
+
+# ::::::::::::
+Example 	# ::::::::::
+# ::::::::::::
+
+
+ex = 'example'
+def test():
+	ex = 'locals variable'
+	print('locals:',locals())
+	print('globals:', globals())
+ex # 'example'
+test() 	# 'locals: {'ex': 'locals variable'}'
+		# 'globals: {'ex': 'example'}'
+
+
