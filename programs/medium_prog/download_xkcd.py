@@ -2,18 +2,20 @@
 
 # download_xkcd.py
 # загружает заданное кол-во комиксов с сайта https://xkcd.com
+# с исполшьзованием нескольких потоков выполнения
 
 # Использование: ./download_xkcd.py 10
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 import requests, bs4, sys, os, subprocess
+from threading import Thread
 from collections import deque
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 def search_img_urls(count):
-	img_links = []
+	img_links = deque()
 	template_url = 'https://xkcd.com/'
 	self_url =  template_url
 	count = int(count)
@@ -54,28 +56,33 @@ def search_img_urls(count):
 
 
 
-def download_images(img_links):
-	for img in img_links:
-		res = requests.get(img['url'])
+class DownloadThread(Thread):
+	"""Пример многопоточной загрузки файлов из интернета"""
+	def __init__(self, img):
+		Thread.__init__(self)
+		self.url = img['url']
+		self.name = img['name']
 
+	def run(self):
+		"""запуск патока"""
+		res = requests.get(self.url)
+		
 		try:
 			res.raise_for_status()
-			subprocess.call(['printf', 
-				'Загружается изображение: \e[35m{}\e[0m'.format(img['name'])])
-			print()
 
 			# создание пути для изображения
-			file_path = os.path.join('xkcd', img['name'])
+			file_path = os.path.join('xkcd', self.name)
 
 			# копирование файла
 			with open(file_path, 'wb') as file:
 				for chunk in res.iter_content(100000):
 					file.write(chunk)
-
+				subprocess.call(['echo', '-e', 
+					'Загруженно: \e[35m{}\e[0m'.format(self.name)])
+			print()
 		except Exception as exc:
-			print('Ошибка: {}'.format(exc))
-	
-	print('Готово!')
+			print('Возникла проблема: {}'.format(exc))
+
 
 
 
@@ -83,9 +90,20 @@ def download_images(img_links):
 
 if len(sys.argv) == 2 and type(int(sys.argv[1])).__name__ == 'int':
 	os.makedirs('xkcd', exist_ok=True)
+	ths = []
 
 	img_links = search_img_urls(sys.argv[1])
-	download_images(img_links)
+
+	while img_links:
+		img = img_links.popleft()
+		thread = DownloadThread(img)
+		ths.append(thread)
+		thread.start()
+
+	for th in ths:
+		th.join()
+
+	print('\nГотово.\n')
 
 else:
 	print('Использование: ./download_xkcd.py 10')
