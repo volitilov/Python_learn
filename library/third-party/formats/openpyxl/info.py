@@ -17,52 +17,92 @@ pip install openpyxl
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-import openpyxl
+from openpyxl import *
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-f = openpyxl.load_workbook('example.xlsx')
-# принимает файл в качестве аргумента и возвращает значение типа 
-# Workbook. Объект Workbook представляет файл Excel подобно тому как 
-# объект File предоставляет открытый текстовый файл.
-
-f.get_sheet_names()
-# получение списка листов, входящих в состав рабочей книги
-
-
-f.active
-# получаем активный лист.
-	title
-	# получение имени
-
-
-sheet = f.get_sheet_by_name('Лист1')
-# получаем объект листа Worksheet, передав строку с именем листа
-	title
-	# получение имени
-	cell(row=1, column=2)
-	# получение или обращение к ячейке
-	get_highest_row()
-	# получение цифры наибольшей строк
-	get_highest_column()
-	# получение цифры наибольшего столбца
-
-
-sheet['A1']
+LXML
 #
-	value
-	# содержит значение хранящееся в ячейке 
-	row
-	# содержит информацию о расположении данной ячейки в ряду
-	column
-	# содержит информацию о расположении данной ячейки в колонке
-	coordinate
-	# содержит координаты ячеки 
 
+NUMPY
+#
 
+PANDAS
+#
 
-openpyxl.cell.column_index_from_string()
-# преобразование буквенного обозначение столбца в цифровое
+Workbook
+# 
 
-openpyxl.cell.get_column_letter()
-# преобразование цифрового обозначение столбца в буквенное
+cell
+#
+
+chart
+#
+
+chartsheet
+#
+
+comments
+#
+
+compat
+#
+
+constants
+#
+
+descriptors
+#
+
+drawing
+#
+	image
+	#
+
+formatting
+#
+
+formula
+#
+
+here
+#
+
+json
+#
+
+load_workbook
+#
+
+os
+#
+
+packaging
+#
+
+reader
+#
+
+src
+#
+
+src_file
+#
+
+styles
+#
+
+utils
+#
+
+workbook
+#
+
+worksheet
+#
+
+writer
+#
+
+xml
+#
