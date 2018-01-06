@@ -17,8 +17,10 @@ json.loads(fp)
 # преобразование из json в python
 
 json.load(fp)
+#
 
 json.dump(obj, fp)
+#
 
 json.dumps(obj)
 # преобразование из python в json
