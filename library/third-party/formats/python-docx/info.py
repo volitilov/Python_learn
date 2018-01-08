@@ -11,7 +11,25 @@ pip install python-docx
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-from python-docx import *
+from docx import *
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+doc = Document('demo.docx')
+
+paragraph = doc.paragraphs[0]
+
+run_obj = paragraph.runs[0]
+
+font = run_obj.font
+
+style = run_obj.style
+
+color = run_obj.style.color
+
+color_format = color.ColorFormat
+
+tab_stop = paragraph.tabstops[0]
+
+
 
