@@ -92,3 +92,10 @@ for msg in email.easy_search(before=datetime.date(2014, 9, 27), limit=10):
 # поиск по отправителю
 for msg in email.easy_search(sender='123@example.com', limit=5):
     pass
+
+
+
+
+# :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+# TODO: исправить на 3 версию python
