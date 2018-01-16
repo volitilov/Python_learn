@@ -1,6 +1,6 @@
 # add_logo.py
 # изменяет размеры и добавляет изображения в верхний правый угол 
-# для изображений расположенных в данном коталоге
+# для изображений расположенных в коталоге imgs
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -9,16 +9,39 @@ from PIL import Image
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+# водяной знак
 EX_IMG = 'popular2.png'
-IMG_SIZE = (300, 300)
+
+# размеры исходных изображений
+width, height = 300, 300
+
+# полный путь к папке с изображениями
+imgs = os.path.abspath('imgs')
 
 logo_img = Image.open(EX_IMG)
-lgog_w, logo_h = logo_img.size
+
+# координаты расположения водянного знака
+x_point = width - logo_img.size[0]
+y_point = 0
 
 
-# TODO: Организовать цикл по фсем файлом в дериктории imgs
-# TODO: Проверить нуждается ли изображение в изменении размеров
-# TODO: Расчитать необходимые еовые значения ширины и высоты
-# TODO: Изменить размеры изображения
-# TODO: Добавить логотип
-# TODO: Сохранить изменения
+# перебор изображений в папке imgs
+for num, infile in enumerate(os.listdir(imgs)):
+	# получаю расширение файла
+	_, ext = os.path.splitext(infile)
+
+	file = imgs + '/' + infile
+
+	# конвертирую изображения для добавления alfa составляющей
+	im = Image.open(file).convert("RGBA")
+	
+	# подгонка размера
+	im.thumbnail((width, height))
+	
+	# TODO: Добавить логотип
+	# im.paste(logo_img, (x_point, y_point))
+	im.alpha_composite(logo_img, dest=(x_point, y_point))
+
+	# TODO: Сохранить изменения
+	os.makedirs('imgs2', exist_ok=True)
+	im.save('imgs2/' + str(num+1) + ".thumbnail" + ext)

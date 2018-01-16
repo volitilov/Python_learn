@@ -5,7 +5,7 @@ from PIL import (ImageColor, Image, ImageDraw, ImageFont)
 # i = ImageColor.getcolor('red', 'RGBA')
 # print(i)
 
-# i = Image.open('qr.png')
+i = Image.open('qr.png')
 # print(i.format, i.size, i.mode, i.filename, 
 # 	i.format_description)
 
@@ -36,18 +36,18 @@ from PIL import (ImageColor, Image, ImageDraw, ImageFont)
 # 			i.putpixel((x, y), (0, 0, 0, 255))
 # 	i.save('i3.png')
 
-with Image.new('RGBA', (300, 300)) as image:
-	draw = ImageDraw.Draw(image)
-	draw.line(((0, 0), (150, 300)), fill=(255, 0, 0), width=20)
-	# красная линия
-	draw.arc(((150, 150), (250, 250)), 45, 210, fill=(0, 255, 0))
-	# зелёная дуга
-	draw.rectangle(((50, 50), (150, 150)), fill=(0, 0, 255))
-	# синий квадрат
+# with Image.new('RGBA', (300, 300)) as image:
+# 	draw = ImageDraw.Draw(image)
+# 	draw.line(((0, 0), (150, 300)), fill=(255, 0, 0), width=20)
+# 	# красная линия
+# 	draw.arc(((150, 150), (250, 250)), 45, 210, fill=(0, 255, 0))
+# 	# зелёная дуга
+# 	draw.rectangle(((50, 50), (150, 150)), fill=(0, 0, 255))
+# 	# синий квадрат
 
-	font = ImageFont.truetype("data/kaligrafica_allfont_ru.ttf", 32)
-	draw.text((200, 200), 'Hello world!', (255, 255, 0), font=font)
-	# жёлтый текст
-	image = image.rotate(90)
-	# поворот на 90 градусов
-	image.save('sample.png')
+# 	font = ImageFont.truetype("data/kaligrafica_allfont_ru.ttf", 32)
+# 	draw.text((200, 200), 'Hello world!', (255, 255, 0), font=font)
+# 	# жёлтый текст
+# 	image = image.rotate(90)
+# 	# поворот на 90 градусов
+# 	image.save('sample.png')
