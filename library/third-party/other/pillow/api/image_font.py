@@ -10,4 +10,4 @@ from PIL import ImageFont as ImF
 
 ImF
 #
-	truetype()
+	truetype(file_font, size)
