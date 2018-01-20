@@ -3,13 +3,6 @@ import time
 
 # :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-# устанавливаю паузу после каждого вызова функции 
-# pg.PAUSE = 1
-
-# активируем средство безопасного выхода из программы
-pg.FAILSAFE = True
-
-
 # for i in range(3):
 	# pg.moveTo(100, 100, duration=0.25)
 	# pg.moveTo(100, 200, duration=0.25)
@@ -31,4 +24,15 @@ pg.FAILSAFE = True
 # 	distance -=10
 # 	pg.dragRel(0, -distance, duration=0.2)
 
-pg.scroll(50)
+# pg.scroll(50)
+
+# im = pg.screenshot()
+
+# time.sleep(10)
+# pg.click(300, 200)
+# pg.typewrite('Hello world', interval=0.25)
+
+# ms = pg.alert(text='Hello python', button='OK')
+ps = pg.password(text='password', title='enter password', 
+	default='123', mask='*')
+print(ps)
