@@ -6,6 +6,8 @@ while True:
 		print('Ведите цифру')
 	except ZeroDivisionError:
 		print('Тебе не может быть {}'.format(tuna))
+	finally:
+		print('Этот блок выпоняеться независимо от ошибок')
 
 
 print(tuna)
