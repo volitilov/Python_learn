@@ -38,10 +38,10 @@ for num, infile in enumerate(os.listdir(imgs)):
 	# подгонка размера
 	im.thumbnail((width, height))
 	
-	# TODO: Добавить логотип
+	# добавляю логотип
 	# im.paste(logo_img, (x_point, y_point))
 	im.alpha_composite(logo_img, dest=(x_point, y_point))
 
-	# TODO: Сохранить изменения
+	# сохраняю изменения
 	os.makedirs('imgs2', exist_ok=True)
 	im.save('imgs2/' + str(num+1) + ".thumbnail" + ext)

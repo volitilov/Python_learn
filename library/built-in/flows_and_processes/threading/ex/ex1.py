@@ -15,5 +15,6 @@ thObj4 = th.Thread(target=print('th: thObj4'))
 th_list = [thObj, thObj2, thObj3]
 
 for i in th_list:
+	i.daemon = True
 	i.start()
 
