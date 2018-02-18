@@ -2,24 +2,48 @@
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+import subprocess, sys
+from select import select
 from socket import *
-import subprocess
 
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 class Chat_client:
 	def __init__(self, ADDR):
-		self.sock = socket(AF_INET, SOCK_STREAM) 
-		self.sock.connect(ADDR)
+		self.sock = socket(AF_INET, SOCK_STREAM)
+		self.sock.settimeout(2)
+
+		try:
+			self.sock.connect(ADDR)
+		except:
+			sys.exit()
+
+		sys.stdout.write('> '); sys.stdout.flush()
+
+		while True:
+			socket_list = [sys.stdin, self.sock]
+			ready_to_read, _, _ = select(socket_list , [], [])
+
+			for sock in ready_to_read:
+				if sock == self.sock:
+					self.print_msg()
+				else:
+					msg = sys.stdin.readline()
+					self.send_msg(msg)
+					sys.stdout.write('> '); sys.stdout.flush()
 
 	def send_msg(self, message):
-		self.sock.send(b''+message)
+		self.sock.send(message)
 
 	def print_msg(self):
-		data = self.sock.recv(1024)
-		data = '- ' + data.decode('utf8')
-		subprocess.call(['echo', '-e', 
-				u'\e[35m{}\e[0m'.format(data)])
+		data = self.sock.recv(4096)
+		if not data:
+			sys.exit()
+		else:
+			data = '- ' + data
+			subprocess.call(['echo', '-e', 
+					u'\e[35m{}\e[0m'.format(data)])
+			sys.stdout.write('> '); sys.stdout.flush()
 
 	def exit(self):
 		self.sock.close()
@@ -29,19 +53,20 @@ class Chat_client:
 # :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 if __name__ == '__main__':
-	try:
-		client = Chat_client(('localhost', 21567))
-		print('Start client...')
-		while True:
-			msg = raw_input('> ')
-			if not msg:
-				break
-			client.send_msg(msg)
-			
-			client.print_msg()
+	if len(sys.argv) < 3 and type(int(sys.argv[2])).__name__ != 'int':
+		print('Usage: python ex_clnt.py hostname port')
+		sys.exit()
+	else:
+		try:
+			host = sys.argv[1]
+			port = int(sys.argv[2])
 
-	except KeyboardInterrupt:
-		print('Client stoped.')
-		client.exit()
-	finally:
-		client.exit()
+			print('Start client...')
+			client = Chat_client((host, port))
+
+		except KeyboardInterrupt:
+			print('Client stoped.')
+			client.exit()
+		finally:
+			sys.exit()
+

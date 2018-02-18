@@ -3,16 +3,16 @@
 # :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 import socket, sys
-from threading import Thread
+import threading as th
 
 # :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-class ChatServer(Thread):
+class ChatServer(th.Thread):
 	def __init__(self, *args):
 		self.ADDR = args
-		Thread.__init__(self)
+		th.Thread.__init__(self)
 		self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		self.users = {}
+		self.users = []
 		
 		try:
 			self.server.bind(self.ADDR)
@@ -25,16 +25,27 @@ class ChatServer(Thread):
 
 	def exit(self):
 		self.server.close()
+		
 
 	def run_thread(self, conn, addr):
-		print('Client connected with ' + addr[0] + ':' + str(addr[1]))
+		cl_addr = ' ' + addr[0] + ':' + str(addr[1])
+		th_name = ' ' + th.current_thread().getName()
+
+		print('Connected client:' + cl_addr + th_name)
+
 		while True:
 			data = conn.recv(1024)
 			if not data:
 				print(str(addr[0]) + ':' + str(addr[1]) + ' - disconnected')
+				for user in self.users:
+					if user[0] == conn:
+						self.users.remove(user)
 				break
+
 			reply = b'' + data
-			conn.sendall(reply) 
+			for user in self.users:
+				if user[0] != conn:
+					user[0].sendall(reply)
 			 
 		conn.close()
 
@@ -42,7 +53,10 @@ class ChatServer(Thread):
 		print('Waiting for connections on port %s' % (self.ADDR[1]))
 		while True:
 			conn, addr = self.server.accept()
-			Thread(target=self.run_thread, args=(conn, addr)).start()
+			self.users.append((conn, addr))
+			th.Thread(target=self.run_thread, args=(conn, addr)).start()
+
+
 
 
 
@@ -50,8 +64,12 @@ class ChatServer(Thread):
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   
 if __name__ == '__main__':
-	try:
-		server = ChatServer('', 21567)
-		server.run()
-	except KeyboardInterrupt:
-		server.exit()
+	if len(sys.argv) < 3 and type(int(sys.argv[2])).__name__ != 'int':
+		print('Usage: python ex_serv.py hostname port')
+		sys.exit()
+	else:
+		try:
+			server = ChatServer(sys.argv[1], int(sys.argv[2]))
+			server.run()
+		except KeyboardInterrupt:
+			server.exit()
