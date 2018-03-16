@@ -3,6 +3,16 @@ import requests as req
 # ::::::::::::::::::::::::::::::::::::::::
 
 # получаем веб-страницу
+# res = req.get('https://httpbin.org/get')
+
+# payload = {'key1': 'value1', 'key2': 'value2'}
+# r = req.get('http://httpbin.org/get', params=payload)
+# print(res.url)
+
+# payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
+# r = req.get('http://httpbin.org/get', params=payload)
+# print(res.url)
+
 res = req.get('https://api.github.com/user', auth=('volitilov@gmail.com', 'Stas6709'))
 
 
