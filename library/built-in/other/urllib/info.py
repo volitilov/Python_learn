@@ -20,6 +20,7 @@ urllib.error
 
 urllib.parse
 # для парсинга URL-адресов
+# смотреть папку 'parse'
 
 urllib.robotparser
 # для парсинга robots.txt файлов
